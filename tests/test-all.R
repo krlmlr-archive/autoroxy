@@ -1,4 +1,4 @@
 library(testthat)
-library(Template)
+library(autoroxy)
 
-test_check("Template")
+test_check("autoroxy")

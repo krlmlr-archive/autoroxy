@@ -1,7 +1,7 @@
 \docType{package}
-\name{Template-package}
-\alias{Template}
-\alias{Template-package}
+\name{autoroxy-package}
+\alias{autoroxy}
+\alias{autoroxy-package}
 \title{What the package does (short line) ~~ package title ~~}
 \description{
 More about what it does (maybe more than one line) ~~ A concise (1-5 lines)
@@ -9,7 +9,7 @@ description of the package ~~
 }
 \details{
 \tabular{ll}{
-  Package: \tab Template\cr
+  Package: \tab autoroxy\cr
   Type: \tab Package\cr
   Version: \tab 1.0\cr
   Date: \tab 2013-07-09\cr
