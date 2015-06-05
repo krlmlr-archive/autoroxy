@@ -1,0 +1,14 @@
+Package: testDocumentation
+Title: What the Package Does (one line, title case)
+Version: 0.0-0
+Authors@R: as.person("Kirill Müller <krlmlr+r@mailbox.org> [aut, cre]")
+Description: What the package does (one paragraph)
+Depends: R (>= 3.2.0)
+License: GPL-3
+LazyData: true
+Encoding: UTF-8
+GitHub: https://github.com/krlmlr/
+NeedsCompilation: no
+Packaged: 2015-06-05 22:38:20 UTC; muelleki
+Author: Kirill Müller [aut, cre]
+Maintainer: Kirill Müller <krlmlr+r@mailbox.org>

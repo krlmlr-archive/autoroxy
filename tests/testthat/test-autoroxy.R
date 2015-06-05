@@ -1,6 +1,12 @@
-context("example")
+context("documentation")
 
-test_that("empty test to satisfy R CMD check", {
-  expect_equal(2 * 2, 4)
+test_that("can build package", {
+  devtools::build("testDocumentation")
+  on.exit(unlink("testDocumentation_0.0-0.tar.gz"), add = TRUE)
+
+  print(untar("testDocumentation_0.0-0.tar.gz", list = TRUE))
 })
 
+test_that("can check package", {
+  devtools::check("testDocumentation")
+})
