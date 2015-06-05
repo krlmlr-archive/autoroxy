@@ -7,6 +7,6 @@
 autoroxy <- function() {
   if ("DESCRIPTION" %in% dir()) {
     message("*** autoroxy: creating documentation")
-    roxygen2::roxygenize(roclets = "rd")
+    roxygen2::roxygenize(roclets = c("rd", "collate"))
   }
 }
