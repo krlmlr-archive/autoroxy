@@ -2,8 +2,9 @@ Package: testDocumentation
 Title: What the Package Does (one line, title case)
 Version: 0.0-0
 Authors@R: as.person("Kirill Müller <krlmlr+r@mailbox.org> [aut, cre]")
-Description: What the package does (one paragraph)
+Description: What the package does (at least one sentence).
 Depends: R (>= 3.2.0)
+Imports: autoroxy, roxygen2
 License: GPL-3
 LazyData: true
 Encoding: UTF-8
