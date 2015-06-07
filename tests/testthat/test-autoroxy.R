@@ -8,5 +8,5 @@ test_that("can build package", {
 })
 
 test_that("can check package", {
-  devtools::check("testDocumentation")
+#  devtools::check("testDocumentation", document = FALSE, check_dir = ".")
 })
