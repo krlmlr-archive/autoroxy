@@ -8,5 +8,7 @@ test_that("can build package", {
 })
 
 test_that("can check package", {
-#  devtools::check("testDocumentation", document = FALSE, check_dir = ".")
+  on.exit(unlink("testDocumentation.Rcheck", recursive = TRUE), add = TRUE)
+  expect_error(devtools::check("testDocumentation", document = FALSE,
+                               check_dir = ".", quiet = TRUE))
 })

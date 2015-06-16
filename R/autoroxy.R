@@ -5,8 +5,14 @@
 #' importing the package and its dependencies.
 #' @export
 autoroxy <- function() {
-  if ("DESCRIPTION" %in% dir()) {
-    message("*** autoroxy: creating documentation")
-    roxygen2::roxygenize(roclets = c("rd", "collate"))
+  if (!"DESCRIPTION" %in% dir()) {
+    return(invisible(NULL))
   }
+
+  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", normalizePath(getwd(), winslash = "/"))) {
+    stop("Execute autoroxy::rox_off() before building a source package.")
+  }
+
+  message("*** autoroxy: creating documentation")
+  roxygen2::roxygenize(roclets = c("rd", "collate"))
 }
