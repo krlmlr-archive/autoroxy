@@ -9,10 +9,14 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
+  if (file.exists("man")) {
+    return(invisible(NULL))
+  }
+
   if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", normalizePath(getwd(), winslash = "/"))) {
-    stop("Execute autoroxy::rox_off() before building a source package.")
+    stop("Cannot run this function in R CMD check.")
   }
 
   message("*** autoroxy: creating documentation")
-  roxygen2::roxygenize(roclets = c("rd", "collate"))
+  roxygen2::roxygenize(roclets = c("rd"))
 }
