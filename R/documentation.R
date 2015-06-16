@@ -8,5 +8,5 @@ remove_documentation <- function(repo) {
 }
 
 man_files <- function(repo) {
-  dir(file.path(git2r::workdir(repo), "man"))
+  file.path("man", dir(file.path(git2r::workdir(repo), "man")))
 }
