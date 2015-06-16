@@ -1,8 +1,12 @@
 add_documentation <- function(pkg, repo) {
-  devtools::document()
-  git2r::add(repo, "/man/*")
+  devtools::document(pkg)
+  git2r::add(repo, man_files(repo))
 }
 
-remove_documentation <- function(pkg, repo) {
-  git2r::rm_file(repo, dir(file.path(git2r::workdir(repo), "man"), full.names = TRUE))
+remove_documentation <- function(repo) {
+  git2r::rm_file(repo, man_files(repo))
+}
+
+man_files <- function(repo) {
+  dir(file.path(git2r::workdir(repo), "man"), full.names = TRUE)
 }
