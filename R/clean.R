@@ -4,7 +4,7 @@ check_git_clean <- function(repo) {
   }
 }
 
-git_clean <- function(repo, kind) {
+git_clean <- function(repo, kind = 1:3) {
   length(unlist(git2r::status(repo)[kind])) == 0L
 }
 
