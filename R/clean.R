@@ -4,6 +4,12 @@ check_git_clean <- function(repo) {
   }
 }
 
-git_clean <- function(repo) {
-  length(unlist(git2r::status(repo))) == 0L)
+git_clean <- function(repo, kind = ) {
+  length(unlist(git2r::status(repo)[kind])) == 0L)
+}
+
+dirty_commit <- function(repo, msg) {
+  if (!git_clean(repo, kind = "staged")) {
+    git2r::commit(repo, msg)
+  }
 }

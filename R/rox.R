@@ -7,7 +7,7 @@ rox_on <- function(pkg = ".") {
   check_git_clean(repo)
   gitignore(repo, add = FALSE)
   add_documentation(pkg, repo)
-  git2r::commit(repo, "rox_on: documentation is version-controlled")
+  dirty_commit(repo, "rox_on: documentation is version-controlled")
 }
 
 #' @importFrom devtools as.package
@@ -19,5 +19,5 @@ rox_off <- function(pkg = ".") {
   check_git_clean(repo)
   gitignore(repo, add = TRUE)
   remove_documentation(repo)
-  git2r::commit(repo, "rox_off: documentation is not version-controlled")
+  dirty_commit(repo, "rox_off: documentation is not version-controlled")
 }
