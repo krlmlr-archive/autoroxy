@@ -13,3 +13,5 @@ NeedsCompilation: no
 Packaged: 2015-06-05 22:38:20 UTC; muelleki
 Author: Kirill Müller [aut, cre]
 Maintainer: Kirill Müller <krlmlr+r@mailbox.org>
+Suggests: knitr
+VignetteBuilder: knitr
