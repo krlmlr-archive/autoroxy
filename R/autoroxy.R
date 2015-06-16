@@ -1,4 +1,4 @@
-#' Generate roxygen2 documentation during package build
+#' Generate roxygen2 documentation during installation from source
 #'
 #' Add a call to this function to any file in your \code{R} directory.
 #' Use explicit qualification (like \code{autoroxy::autoroxy()}) to avoid
@@ -18,5 +18,11 @@ autoroxy <- function() {
   }
 
   message("*** autoroxy: creating documentation")
+
+  if (!requireNamespace("roxygen2")) {
+    warning("Cannot load roxygen2. Package documentation will be unavailable.", call. = FALSE)
+    return(invisible(NULL))
+  }
+
   roxygen2::roxygenize(roclets = c("rd"))
 }
