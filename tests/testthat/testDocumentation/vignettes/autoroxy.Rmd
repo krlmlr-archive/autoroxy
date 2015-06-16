@@ -10,5 +10,8 @@ vignette: >
 ---
 
 ```{r}
+dir()
+getwd()
+setwd("..")
 autoroxy::autoroxy()
 ```
