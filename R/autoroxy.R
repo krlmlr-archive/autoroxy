@@ -39,17 +39,19 @@ autoroxy_file <- function(pkg) {
   file.path(dir_path, file_name)
 }
 
-add_autoroxy <- function(pkg) {
+add_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
   writeLines("autoroxy::autoroxy()", autoroxy_file(pkg))
+  git2r::add(repo, "R")
 }
 
-remove_autoroxy <- function(pkg) {
+remove_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
   unlink(autoroxy_file(pkg))
+  git2r::add(repo, "R")
 }
 
-add_autoroxy_dep <- function(pkg) {
+add_autoroxy_dep <- function(pkg, repo) {
   pkg <- as.package(pkg)
 
   desc_path <- file.path(pkg$path, "DESCRIPTION")
@@ -60,9 +62,10 @@ add_autoroxy_dep <- function(pkg) {
     desc <- cbind(desc, t(c(Suggests="autoroxy")))
   }
   write.dcf(desc, desc_path)
+  git2r::add(repo, "DESCRIPTION")
 }
 
-remove_autoroxy_dep <- function(pkg) {
+remove_autoroxy_dep <- function(pkg, repo) {
   pkg <- as.package(pkg)
 
   desc_path <- file.path(pkg$path, "DESCRIPTION")
@@ -73,4 +76,5 @@ remove_autoroxy_dep <- function(pkg) {
     warning("autoroxy not in Suggests")
   }
   write.dcf(desc, desc_path)
+  git2r::add(repo, "DESCRIPTION")
 }
