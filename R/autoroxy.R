@@ -66,7 +66,9 @@ add_autoroxy_dep <- function(pkg, repo) {
   desc <- read.dcf(desc_path)
   if ("Suggests" %in% colnames(desc)) {
     # Very rough...
-    desc[, "Suggests"] <- paste0(desc[, "Suggests"], ", autoroxy")
+    desc[, "Suggests"] <- paste0(
+      remove_dep_from_suggests(desc[, "Suggests"]),
+      ", autoroxy")
   } else {
     desc <- cbind(desc, t(c(Suggests="autoroxy")))
   }
@@ -84,13 +86,16 @@ remove_autoroxy_dep <- function(pkg, repo) {
     if (desc[, suggests_idx] == "autoroxy") {
       desc <- desc[, -suggests_idx]
     } else {
-      # Very rough!
-      desc[, suggests_idx] <- gsub(", autoroxy", "", desc[, suggests_idx])
+      desc[, suggests_idx] <- remove_dep_from_suggests(desc[, suggests_idx])
     }
-    desc <- desc[, -, drop = F]
   } else {
     warning("No Suggests field")
   }
   write.dcf(desc, desc_path)
   git2r::add(repo, "DESCRIPTION")
+}
+
+remove_dep_from_suggests <- function(x) {
+  # Very rough!
+  gsub(", autoroxy", "", x)
 }
