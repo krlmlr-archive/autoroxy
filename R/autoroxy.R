@@ -26,3 +26,41 @@ autoroxy <- function() {
 
   roxygen2::roxygenize(roclets = c("rd"))
 }
+
+autoroxy_file <- function(pkg) {
+  file_name <- if (pkg$name == "autoroxy") {
+    "zzz-autoroxy.R"
+  } else {
+    "aaa-autoroxy.R"
+  }
+  dir_path <- file.path(pkg$path, "R")
+  if (!file.exists(dir_path))
+    dir.create(dir_path)
+  file.path(dir_path, file_name)
+}
+
+add_autoroxy <- function(pkg) {
+  pkg <- as.package(pkg)
+  writeLines("autoroxy::autoroxy()", autoroxy_file(pkg))
+
+  desc_path <- file.path(pkg$path, "DESCRIPTION")
+  desc <- read.dcf(desc_path)
+  if ("Suggests" %in% colnames(desc)) {
+    desc[, "Suggests"] <- paste0(desc[, "Suggests"], ", autoroxy")
+  } else {
+    desc <- cbind(desc, t(c(Suggests="autoroxy")))
+  }
+  write.dcf(desc, desc_path)
+}
+
+remove_autoroxy <- function(pkg) {
+  pkg <- as.package(pkg)
+  unlink(autoroxy_file(pkg))
+  desc <- read.dcf(desc_path)
+  if ("Suggests" %in% colnames(desc)) {
+    desc <- desc[, -match("Suggests", colnames(desc)), drop = F]
+  } else {
+    warning("autoroxy not in Suggests")
+  }
+  write.dcf(desc, desc_path)
+}
