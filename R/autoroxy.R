@@ -42,6 +42,15 @@ autoroxy_file <- function(pkg) {
 add_autoroxy <- function(pkg) {
   pkg <- as.package(pkg)
   writeLines("autoroxy::autoroxy()", autoroxy_file(pkg))
+}
+
+remove_autoroxy <- function(pkg) {
+  pkg <- as.package(pkg)
+  unlink(autoroxy_file(pkg))
+}
+
+add_autoroxy_dep <- function(pkg) {
+  pkg <- as.package(pkg)
 
   desc_path <- file.path(pkg$path, "DESCRIPTION")
   desc <- read.dcf(desc_path)
@@ -53,9 +62,10 @@ add_autoroxy <- function(pkg) {
   write.dcf(desc, desc_path)
 }
 
-remove_autoroxy <- function(pkg) {
+remove_autoroxy_dep <- function(pkg) {
   pkg <- as.package(pkg)
-  unlink(autoroxy_file(pkg))
+
+  desc_path <- file.path(pkg$path, "DESCRIPTION")
   desc <- read.dcf(desc_path)
   if ("Suggests" %in% colnames(desc)) {
     desc <- desc[, -match("Suggests", colnames(desc)), drop = F]

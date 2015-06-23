@@ -8,6 +8,7 @@ rox_on <- function(pkg = ".") {
   gitignore(repo, add = FALSE)
   add_documentation(pkg, repo)
   remove_autoroxy(pkg)
+  remove_autoroxy_dep(pkg)
   dirty_commit(repo, "rox_on: documentation is version-controlled")
 }
 
@@ -21,5 +22,6 @@ rox_off <- function(pkg = ".") {
   gitignore(repo, add = TRUE)
   remove_documentation(repo)
   add_autoroxy(pkg)
+  add_autoroxy_dep(pkg)
   dirty_commit(repo, "rox_off: documentation is not version-controlled")
 }
