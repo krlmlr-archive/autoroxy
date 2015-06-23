@@ -57,6 +57,7 @@ add_autoroxy_dep <- function(pkg, repo) {
   desc_path <- file.path(pkg$path, "DESCRIPTION")
   desc <- read.dcf(desc_path)
   if ("Suggests" %in% colnames(desc)) {
+    # Very rough...
     desc[, "Suggests"] <- paste0(desc[, "Suggests"], ", autoroxy")
   } else {
     desc <- cbind(desc, t(c(Suggests="autoroxy")))
@@ -70,10 +71,17 @@ remove_autoroxy_dep <- function(pkg, repo) {
 
   desc_path <- file.path(pkg$path, "DESCRIPTION")
   desc <- read.dcf(desc_path)
-  if ("Suggests" %in% colnames(desc)) {
-    desc <- desc[, -match("Suggests", colnames(desc)), drop = F]
+  suggests_idx <- match("Suggests", colnames(desc))
+  if (!is.na(suggests_idx)) {
+    if (desc[, suggests_idx] == "autoroxy") {
+      desc <- desc[, -suggests_idx]
+    } else {
+      # Very rough!
+      desc[, suggests_idx] <- gsub(", autoroxy", "", desc[, suggests_idx])
+    }
+    desc <- desc[, -, drop = F]
   } else {
-    warning("autoroxy not in Suggests")
+    warning("No Suggests field")
   }
   write.dcf(desc, desc_path)
   git2r::add(repo, "DESCRIPTION")
