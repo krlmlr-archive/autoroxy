@@ -28,7 +28,7 @@ autoroxy <- function() {
 }
 
 autoroxy_file <- function(pkg) {
-  file_name <- if (pkg$name == "autoroxy") {
+  file_name <- if (pkg$package == "autoroxy") {
     "zzz-autoroxy.R"
   } else {
     "aaa-autoroxy.R"
