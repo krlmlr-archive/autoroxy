@@ -9,3 +9,6 @@ License: GPL-3
 Imports: devtools, git2r
 Suggests:
     testthat, roxygen2
+GitHub: https://github.com/krlmlr/autoroxy
+URL: http://krlmlr.github.io/autoroxy
+BugReports: https://github.com/krlmlr/autoroxy/issues
