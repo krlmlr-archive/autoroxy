@@ -17,14 +17,14 @@
 #'
 #' It is assumed that Git is used to version-control the package.
 #' The functions switch between two states: ignoring and versioning
-#' documentation, abbreviated by "off" and "on" mode.
+#' documentation, abbreviated by ``off'' and ``on'' mode.
 #' (This affects only the \code{man} directory, the \code{NAMESPACE}
 #' and \code{DESCRIPTION} files are always version-controlled.)
 #' Currently, this is an all-or-nothing decision:
 #' It is not possible to keep only selected files version-controlled.
-#' Even in "off" mode, it can be built like usual -- only that
+#' Even in ``off'' mode, it can be built like usual -- only that
 #' the changes in the generated files are not tracked by the version control
-#' system. Moreover, in "off" mode a file with a call to \code{\link{autoroxy}}
+#' system. Moreover, in ``off'' mode a file with a call to \code{\link{autoroxy}}
 #' is written to a special file in the \code{R} directory; this has the effect
 #' that documentation is available even with \code{R CMD INSTALL} but is
 #' harmless otherwise.
@@ -32,13 +32,13 @@
 #' The Git repository must be in a clean state, i.e., the command
 #' \code{git status} shows no changes.
 #' On success, the changes are committed to Git.
-#' Repeatedly calling the same function twice should have no effect on the
-#' second call.
+#' When repeatedly calling the same function twice, the second call should have
+#' no effect.
 #'
 #' Repeatedly turning documentation on an off in the same branch
 #' clutters the history.  Hence, it is recommended to perform
-#' development in a dedicated development branch and keep the
-#' documentation only in a dedicated release branch.  This is achieved
+#' development in a dedicated \emph{development} branch and keep the
+#' documentation only in a \emph{release} branch.  This is achieved
 #' easily by using \code{git flow} -- documentation can be turned
 #' off in the \code{develop} branch (and hence all feature branches),
 #' turned on again as soon as a release is started, and turned off
