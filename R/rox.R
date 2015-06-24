@@ -51,6 +51,8 @@
 #' history of \code{master}.  Remember to run at least
 #' \code{git diff --name-status master..} before finishing a release.
 #'
+#' @inheritParams devtools::install
+#'
 #' @importFrom devtools as.package document
 #' @export
 #' @name rox
