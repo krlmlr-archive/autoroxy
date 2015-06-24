@@ -6,5 +6,6 @@ create_temp_package <- function() {
   repo <- git2r::init(pkg_path)
   git2r::add(repo, "*")
   git2r::commit(repo, "initial")
+  git2r::config(repo, user.name="Alice", user.email="alice@example.org")
   repo
 }
