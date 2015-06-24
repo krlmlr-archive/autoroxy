@@ -1,8 +1,9 @@
 #' Generate roxygen2 documentation during installation from source
 #'
-#' Add a call to this function to any file in your \code{R} directory.
-#' Use explicit qualification (like \code{autoroxy::autoroxy()}) to avoid
-#' importing the package and its dependencies.
+#' Add the body of this function
+#' to any file in your \code{R} directory.
+#' (This is done automatically by \code{\link{rox_off}}.)
+#'
 #' @export
 autoroxy <- function() {
   if (!"DESCRIPTION" %in% dir()) {
