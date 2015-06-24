@@ -5,7 +5,7 @@
 #' control system.  On the other hand, it seems necessary to
 #' version-control the documentation:
 #' \itemize{
-#'   \item direct installation (via R CMD \code{\link[base]{INSTALL}} and others)
+#'   \item direct installation (via R CMD \code{\link[utils]{INSTALL}} and others)
 #'     and building a source archive
 #'     requires fully built documentation
 #'   \item the generated documentation depends not only on the package
