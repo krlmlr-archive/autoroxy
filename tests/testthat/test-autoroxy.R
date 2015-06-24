@@ -22,3 +22,41 @@ test_that("will not check package", {
   expect_error(devtools::check(pkg_path, document = FALSE, check_dir = ".", quiet = TRUE),
                "Command failed")
 })
+
+test_that("will create documentation during load_all", {
+  repo <- create_temp_package()
+  pkg_path <- repo@path
+  expect_output(rox_off(pkg_path), "rox_off")
+  expect_true(git_clean(repo))
+
+  expect_false(file.exists(file.path(pkg_path, "man")))
+  expect_false(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
+
+  expect_output(rox_on(pkg_path), "rox_on")
+  expect_true(git_clean(repo))
+
+  expect_true(file.exists(file.path(pkg_path, "man")))
+  expect_true(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
+
+  expect_output(rox_off(pkg_path), "rox_off")
+  expect_true(git_clean(repo))
+
+  expect_false(file.exists(file.path(pkg_path, "man")))
+  expect_false(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
+
+  expect_message(devtools::load_all(pkg_path), "[*][*][*] autoroxy")
+  expect_true(file.exists(file.path(pkg_path, "man")))
+  expect_true(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
+
+  expect_output(rox_on(pkg_path), "rox_on")
+  expect_true(git_clean(repo))
+
+  expect_true(file.exists(file.path(pkg_path, "man")))
+  expect_true(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
+
+  expect_output(rox_off(pkg_path), "rox_off")
+  expect_true(git_clean(repo))
+
+  expect_false(file.exists(file.path(pkg_path, "man")))
+  expect_false(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
+})
