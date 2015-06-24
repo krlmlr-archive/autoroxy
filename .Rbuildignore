@@ -5,3 +5,6 @@
 ^tools$
 ^\.travis\.yml$
 ^man$
+^Makefile$
+^Makefile\.in$
+^makeR$
