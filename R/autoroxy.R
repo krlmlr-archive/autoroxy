@@ -29,7 +29,7 @@ autoroxy <- function() {
 }
 
 autoroxy_code <- function() {
-  gsub(" +$", "", format(dput(body(autoroxy))))
+  gsub(" +$", "", format(body(autoroxy)))
 }
 
 autoroxy_dir <- function() {
