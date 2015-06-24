@@ -17,11 +17,17 @@
 #'
 #' It is assumed that Git is used to version-control the package.
 #' The functions switch between two states: ignoring and versioning
-#' documentation.
+#' documentation, abbreviated by "off" and "on" mode.
 #' (This affects only the \code{man} directory, the \code{NAMESPACE}
 #' and \code{DESCRIPTION} files are always version-controlled.)
 #' Currently, this is an all-or-nothing decision:
 #' It is not possible to keep only selected files version-controlled.
+#' Even in "off" mode, it can be built like usual -- only that
+#' the changes in the generated files are not tracked by the version control
+#' system. Moreover, in "off" mode a file with a call to \code{\link{autoroxy}}
+#' is written to a special file in the \code{R} directory; this has the effect
+#' that documentation is available even with \code{R CMD INSTALL} but is
+#' harmless otherwise.
 #'
 #' The Git repository must be in a clean state, i.e., the command
 #' \code{git status} shows no changes.
