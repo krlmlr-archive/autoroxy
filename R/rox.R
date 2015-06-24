@@ -53,6 +53,19 @@
 #'
 #' @inheritParams devtools::install
 #'
+#' @seealso
+#'   \code{\link[devtools]{as.package}},
+#'   \code{\link[devtools]{install}},
+#'   \code{\link[roxygen2]{roxygenize}}
+#'
+#' @references
+#'   Vincent Driessen:
+#'   \href{nvie.com/posts/a-successful-git-branching-model/}{Git Flow: A successful branching model},
+#'   blog post
+#'
+#'   Git Flow, \href{https://github.com/petervanderdoes/gitflow}{AVH edition}
+#'
+#'
 #' @importFrom devtools as.package document
 #' @export
 #' @name rox
