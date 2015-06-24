@@ -27,12 +27,8 @@ autoroxy <- function() {
   roxygen2::roxygenize(roclets = c("rd"))
 }
 
-autoroxy_code <- function(pkg) {
-  file_name <- if (pkg$package == "autoroxy") {
-    "autoroxy()"
-  } else {
-    "autoroxy::autoroxy()"
-  }
+autoroxy_code <- function() {
+  format(dput(body(autoroxy)))
 }
 
 autoroxy_file <- function(pkg) {
@@ -49,7 +45,7 @@ autoroxy_file <- function(pkg) {
 
 add_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
-  writeLines(autoroxy_code(pkg), autoroxy_file(pkg))
+  writeLines(autoroxy_code(), autoroxy_file(pkg))
   git2r::add(repo, "R")
 }
 
