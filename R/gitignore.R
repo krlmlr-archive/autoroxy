@@ -1,6 +1,10 @@
 gitignore <- function(repo, add, entry = "/man") {
   gitignore_path <- file.path(git2r::workdir(repo), ".gitignore")
-  gitignore_contents <- readLines(gitignore_path)
+  gitignore_contents <- if (file.exists(gitignore_path)) {
+    readLines(gitignore_path)
+  } else {
+    character()
+  }
   entry_pos <- which(entry == gitignore_contents)
 
   if (length(entry_pos) == 0) {
