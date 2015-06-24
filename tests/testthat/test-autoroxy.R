@@ -4,8 +4,9 @@ test_that("can build package", {
   repo <- create_temp_package()
   pkg_path <- repo@path
   expect_output(rox_off(pkg_path), "rox_off")
-  devtools::build(pkg_path, quiet = TRUE, path = ".")
+
   on.exit(unlink("testDocumentation_0.0-0.tar.gz"), add = TRUE)
+  devtools::build(pkg_path, quiet = TRUE, path = ".")
 
   tar_list <- untar("testDocumentation_0.0-0.tar.gz", list = TRUE)
   expect_false("testDocumentation/man/" %in% tar_list)
@@ -16,6 +17,8 @@ test_that("will not check package", {
   repo <- create_temp_package()
   pkg_path <- repo@path
   expect_output(rox_off(pkg_path), "rox_off")
+
+  on.exit(unlink("testDocumentation.Rcheck", recursive = TRUE), add = TRUE)
   expect_error(devtools::check(pkg_path, document = FALSE, check_dir = ".", quiet = TRUE),
                "Command failed")
 })
