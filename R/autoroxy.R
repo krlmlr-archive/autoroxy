@@ -28,7 +28,7 @@ autoroxy <- function() {
 }
 
 autoroxy_code <- function() {
-  format(dput(body(autoroxy)))
+  gsub(" +$", "", format(dput(body(autoroxy))))
 }
 
 autoroxy_file <- function(pkg) {
