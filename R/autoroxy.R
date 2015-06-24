@@ -1,8 +1,9 @@
 #' Generate roxygen2 documentation during installation from source
 #'
-#' Add a call to this function to any file in your \code{R} directory.
-#' Use explicit qualification (like \code{autoroxy::autoroxy()}) to avoid
-#' importing the package and its dependencies.
+#' Add the body of this function
+#' to any file in your \code{R} directory.
+#' (This is done automatically by \code{\link{rox_off}}.)
+#'
 #' @export
 autoroxy <- function() {
   if (!"DESCRIPTION" %in% dir()) {
@@ -25,4 +26,32 @@ autoroxy <- function() {
   }
 
   roxygen2::roxygenize(roclets = c("rd"))
+}
+
+autoroxy_code <- function() {
+  gsub(" +$", "", format(dput(body(autoroxy))))
+}
+
+autoroxy_file <- function(pkg) {
+  file_name <- if (pkg$package == "autoroxy") {
+    "zzz-autoroxy.R"
+  } else {
+    "aaa-autoroxy.R"
+  }
+  dir_path <- file.path(pkg$path, "R")
+  if (!file.exists(dir_path))
+    dir.create(dir_path)
+  file.path(dir_path, file_name)
+}
+
+add_autoroxy <- function(pkg, repo) {
+  pkg <- as.package(pkg)
+  writeLines(autoroxy_code(), autoroxy_file(pkg))
+  git2r::add(repo, "R")
+}
+
+remove_autoroxy <- function(pkg, repo) {
+  pkg <- as.package(pkg)
+  unlink(autoroxy_file(pkg))
+  git2r::add(repo, "R")
 }

@@ -18,4 +18,4 @@ StripTrailingWhitespace: Yes
 BuildType: Package
 PackageUseDevtools: Yes
 PackageInstallArgs: --no-multiarch
-PackageRoxygenize: collate,namespace
+PackageRoxygenize: rd,collate,namespace
