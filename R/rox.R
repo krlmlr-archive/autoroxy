@@ -68,6 +68,7 @@ rox_on <- function(pkg = ".") {
 
 #' @importFrom devtools as.package
 #' @export
+#' @rdname rox
 rox_off <- function(pkg = ".") {
   pkg <- as.package(pkg)
   repo <- git2r::repository(pkg$path)
