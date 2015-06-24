@@ -29,16 +29,20 @@ autoroxy <- function() {
 }
 
 autoroxy_code <- function() {
-  gsub(" +$", "", format(dput(body(autoroxy))))
+  gsub(" +$", "", format(body(autoroxy)))
 }
 
-autoroxy_file <- function(pkg) {
-  file_name <- if (pkg$package == "autoroxy") {
-    "zzz-autoroxy.R"
-  } else {
-    "aaa-autoroxy.R"
-  }
-  dir_path <- file.path(pkg$path, "R")
+autoroxy_dir <- function() {
+  "R"
+}
+
+autoroxy_file <- function() {
+  "zzz-autoroxy.R"
+}
+
+autoroxy_path <- function(pkg) {
+  file_name <- autoroxy_file()
+  dir_path <- file.path(pkg$path, autoroxy_dir())
   if (!file.exists(dir_path))
     dir.create(dir_path)
   file.path(dir_path, file_name)
@@ -46,12 +50,12 @@ autoroxy_file <- function(pkg) {
 
 add_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
-  writeLines(autoroxy_code(), autoroxy_file(pkg))
+  writeLines(autoroxy_code(), autoroxy_path(pkg))
   git2r::add(repo, "R")
 }
 
 remove_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
-  unlink(autoroxy_file(pkg))
+  git2r::rm_file(repo, file.path(autoroxy_dir(), autoroxy_file()))
   git2r::add(repo, "R")
 }
