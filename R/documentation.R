@@ -5,8 +5,13 @@ add_documentation <- function(pkg, repo) {
 
 remove_documentation <- function(repo) {
   git2r::rm_file(repo, man_files(repo))
+  unlink(man_dir(repo), recursive = TRUE)
+}
+
+man_dir <- function(repo) {
+  file.path(git2r::workdir(repo), "man")
 }
 
 man_files <- function(repo) {
-  file.path("man", dir(file.path(git2r::workdir(repo), "man")))
+  file.path("man", dir(man_dir(repo)))
 }
