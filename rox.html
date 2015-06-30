@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>rox. autoroxy 0.0-3.1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="#">autoroxy 0.0-3.1</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Turn version-controlled documentation on and off</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><div>rox_on(pkg&nbsp;=&nbsp;".")</div>
+<div>rox_off(pkg&nbsp;=&nbsp;".")</div></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>pkg</dt>
+      <dd>package description, can be path or package name.  See
+<code><a href='http://www.inside-r.org/packages/cran/devtools/docs/as.package'>as.package</a></code> for more information</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Documentation, if generated automatically by, e.g., <code>roxygen2</code>,
+is a build artifact that ideally should not be added to a version
+control system.  On the other hand, it seems necessary to
+version-control the documentation:
+<ul>
+<li> direct installation (via R CMD <code><a href='http://www.inside-r.org/r-doc/utils/INSTALL'>INSTALL</a></code> and others)
+    and building a source archive
+    requires fully built documentation
+  </li>
+<li> the generated documentation depends not only on the package
+    itself, but also on <code>roxygen2</code> and perhaps
+    other packages that are used in the generation process.
+</li>
+</ul></p>
+  
+      <p>These functions attempt to work around this
+dilemma.</p>
+  
+    </div>
+
+    <div class="Details">
+      <h2>Details</h2>
+
+      <p>It is assumed that Git is used to version-control the package.
+The functions switch between two states: ignoring and versioning
+documentation, abbreviated by ``off'' and ``on'' mode.
+(This affects only the <code>man</code> directory, the <code>NAMESPACE</code>
+and <code>DESCRIPTION</code> files are always version-controlled.)
+Currently, this is an all-or-nothing decision:
+It is not possible to keep only selected files version-controlled.
+Even in ``off'' mode, it can be built like usual -- only that
+the changes in the generated files are not tracked by the version control
+system. Moreover, in ``off'' mode a file that contains the body of
+<code><a href='autoroxy.html'>autoroxy</a></code> is written to a special file in the <code>R</code> directory;
+this has the effect that documentation is available even with
+<code>R CMD INSTALL</code> but is harmless otherwise.  (This special file is
+removed again in ``on'' mode.)</p>
+  
+      <p>The Git repository must be in a clean state, i.e., the command
+<code>git status</code> shows no changes.
+On success, the changes are committed to Git.
+When repeatedly calling the same function twice, the second call should have
+no effect.</p>
+  
+      <p>Repeatedly turning documentation on an off in the same branch
+clutters the history.  Hence, it is recommended to perform
+development in a dedicated <em>development</em> branch and keep the
+documentation only in a <em>release</em> branch.  This is achieved
+easily by using <code>git flow</code> -- documentation can be turned
+off in the <code>develop</code> branch (and hence all feature branches),
+turned on again as soon as a release is started, and turned off
+after merging a released version back to <code>develop</code>.
+Hooks can help automating this process.
+As the history in the <code>master</code> branch contains
+only merges from release branches, even repeated turning off and on
+of documentation in development branches doesn't show in the mainline
+history of <code>master</code>.  Remember to run at least
+<code>git diff --name-status master..</code> before finishing a release.</p>
+  
+    </div>
+
+    <div class="References">
+      <h2>References</h2>
+
+      <p>Vincent Driessen:
+  <a href = 'nvie.com/posts/a-successful-git-branching-model/'>Git Flow: A successful branching model</a>,
+  blog post</p>
+  
+      <p>Git Flow, <a href = 'https://github.com/petervanderdoes/gitflow'>AVH edition</a></p>
+  
+    </div>
+      </div>
+  <div class="span4">
+    <!-- <ul>
+      <li>rox</li><li>rox_off</li><li>rox_on</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+      
+    <h2>See also</h2>
+    
+<code><a href='http://www.inside-r.org/packages/cran/devtools/docs/as.package'>as.package</a></code>,
+  <code><a href='http://www.inside-r.org/packages/cran/devtools/docs/install'>install</a></code>,
+  <code><a href='http://www.inside-r.org/packages/cran/roxygen2/docs/roxygenize'>roxygenize</a></code>
+
+        
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://getbootstrap.com">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
