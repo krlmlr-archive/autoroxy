@@ -52,10 +52,14 @@ add_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
   writeLines(autoroxy_code(), autoroxy_path(pkg))
   git2r::add(repo, "R")
+  roxygen2::update_collate(pkg$path)
+  git2r::add(repo, "DESCRIPTION")
 }
 
 remove_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
   git2r::rm_file(repo, file.path(autoroxy_dir(), autoroxy_file()))
   git2r::add(repo, "R")
+  roxygen2::update_collate(pkg$path)
+  git2r::add(repo, "DESCRIPTION")
 }
