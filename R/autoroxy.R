@@ -50,7 +50,8 @@ autoroxy_path <- function(pkg) {
 
 add_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
-  writeLines(autoroxy_code(), autoroxy_path(pkg))
+  writeLines(c("# nolint start", autoroxy_code(), "# nolint end"),
+             autoroxy_path(pkg))
   git2r::add(repo, "R")
   roxygen2::update_collate(pkg$path)
   git2r::add(repo, "DESCRIPTION")
