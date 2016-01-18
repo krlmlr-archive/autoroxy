@@ -3,7 +3,7 @@ create_temp_package <- function() {
   dir.create(test_dir)
   file.copy("testDocumentation", test_dir, recursive = TRUE)
   pkg_path <- file.path(test_dir, "testDocumentation")
-  expect_output(devtools::document(pkg_path), ".")
+  expect_output(devtools::document(pkg_path), ".") # nolint
   repo <- git2r::init(pkg_path)
   git2r::config(repo, user.name="Alice", user.email="alice@example.org")
   git2r::add(repo, "*")

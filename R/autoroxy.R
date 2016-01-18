@@ -14,7 +14,7 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
-  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$",
+  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", # nolint
             normalizePath(getwd(), winslash = "/"))) {
     stop("Cannot run this function in R CMD check.")
   }
