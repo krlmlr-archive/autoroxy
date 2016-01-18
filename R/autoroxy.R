@@ -14,14 +14,16 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
-  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", normalizePath(getwd(), winslash = "/"))) {
+  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$",
+            normalizePath(getwd(), winslash = "/"))) {
     stop("Cannot run this function in R CMD check.")
   }
 
   message("*** autoroxy: creating documentation")
 
   if (!requireNamespace("roxygen2")) {
-    warning("Cannot load roxygen2. Package documentation will be unavailable.", call. = FALSE)
+    warning("Cannot load roxygen2. Package documentation will be unavailable.",
+            call. = FALSE)
     return(invisible(NULL))
   }
 
