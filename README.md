@@ -2,7 +2,9 @@
 
 Automatically generate roxygen2 documentation.  Simply call `rox::off()` for development, `rox::on()` before releasing.  This is best done in two separate branches, as demonstrated in this repository.  The [`master` branch](https://github.com/krlmlr/autoroxy) doesn't contain the `man` directory, but the [`production` branch](https://github.com/krlmlr/autoroxy/tree/production) does.  Development happens in `master` as usual, the `production` branch is used only for releases.  See [the documentation](http://krlmlr.github.io/autoroxy/rox.html) for more details.
 
-This also works with [Travis CI](https://travis-ci.org/) but requires the following entry in `.travis.yml` to trigger the generation of the documentation ([code](https://github.com/krlmlr/autoroxy/blob/a9d7e626d8bbbf1a0c9939d072ba16694381f963/.travis.yml#L7-L8)):
+Packages with `rox::off()` are still compatible with `devtools::install_github()`, because the documentation is created as a side effect of `R CMD INSTALL`.  However, users of your packages need to have `roxygen2` installed before installing from GitHub.
+
+By the same token, this works with [Travis CI](https://travis-ci.org/) but requires the following entry in `.travis.yml` to trigger the generation of the documentation ([code](https://github.com/krlmlr/autoroxy/blob/a9d7e626d8bbbf1a0c9939d072ba16694381f963/.travis.yml#L7-L8)):
 
 ```
 before_script: R CMD INSTALL .
