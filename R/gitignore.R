@@ -1,4 +1,4 @@
-gitignore <- function(repo, add, entry = "/man") { # nolint
+gitignore <- function(repo, entry, add) { # nolint
   gitignore_path <- file.path(git2r::workdir(repo), ".gitignore")
   gitignore_contents <- if (file.exists(gitignore_path)) {
     readLines(gitignore_path)

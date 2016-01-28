@@ -80,7 +80,8 @@ rox_on <- function(pkg = ".") {
   repo <- git2r::repository(pkg$path)
 
   check_git_clean(repo)
-  gitignore(repo, add = FALSE)
+  gitignore(repo, "/man", add = FALSE)
+  gitignore(repo, "/NAMESPACE", add = FALSE)
   add_documentation(pkg, repo)
   remove_autoroxy(pkg, repo)
   dirty_commit(repo, "rox_on: documentation is version-controlled")
@@ -94,7 +95,8 @@ rox_off <- function(pkg = ".") {
   repo <- git2r::repository(pkg$path)
 
   check_git_clean(repo)
-  gitignore(repo, add = TRUE)
+  gitignore(repo, "/man", add = TRUE)
+  gitignore(repo, "/NAMESPACE", add = TRUE)
   remove_documentation(repo)
   add_autoroxy(pkg, repo)
   dirty_commit(repo, "rox_off: documentation is not version-controlled")
