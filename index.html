@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>Index. autoroxy 0.0-5</title>
+<title>Index. autoroxy 0.1</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">autoroxy 0.0-5</a>
+      <a class="brand" href="#">autoroxy 0.1</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -56,7 +56,9 @@
 
 <p>Automatically generate roxygen2 documentation.  Simply call <code>rox::off()</code> for development, <code>rox::on()</code> before releasing.  This is best done in two separate branches, as demonstrated in this repository.  The <a href="https://github.com/krlmlr/autoroxy"><code>master</code> branch</a> doesn&#39;t contain the <code>man</code> directory, but the <a href="https://github.com/krlmlr/autoroxy/tree/production"><code>production</code> branch</a> does.  Development happens in <code>master</code> as usual, the <code>production</code> branch is used only for releases.  See <a href="http://krlmlr.github.io/autoroxy/rox.html">the documentation</a> for more details.</p>
 
-<p>This also works with <a href="https://travis-ci.org/">Travis CI</a> but requires the following entry in <code>.travis.yml</code> to trigger the generation of the documentation (<a href="https://github.com/krlmlr/autoroxy/blob/a9d7e626d8bbbf1a0c9939d072ba16694381f963/.travis.yml#L7-L8">code</a>):</p>
+<p>Packages with <code>rox::off()</code> are still compatible with <code>devtools::install_github()</code>, because the documentation is created as a side effect of <code>R CMD INSTALL</code>.  However, users of your packages need to have <code>roxygen2</code> installed before installing from GitHub.</p>
+
+<p>By the same token, this works with <a href="https://travis-ci.org/">Travis CI</a> but requires the following entry in <code>.travis.yml</code> to trigger the generation of the documentation (<a href="https://github.com/krlmlr/autoroxy/blob/a9d7e626d8bbbf1a0c9939d072ba16694381f963/.travis.yml#L7-L8">code</a>):</p>
 
 <pre><code>before_script: R CMD INSTALL .
 </code></pre>
