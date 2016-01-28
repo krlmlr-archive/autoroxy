@@ -1,3 +1,11 @@
+Version 0.0-5 (2016-01-28)
+===
+
+- Also test with Travis-CI.
+- Use `master` and `production` as branch names in documentation.
+- Satisfy `lintr`.
+
+
 Version 0.0-4 (2015-12-13)
 ===
 

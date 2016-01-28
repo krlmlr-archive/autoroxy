@@ -19,7 +19,8 @@ test_that("will not check package", {
   expect_output(rox_off(pkg_path), "rox_off")
 
   on.exit(unlink("testDocumentation.Rcheck", recursive = TRUE), add = TRUE)
-  expect_error(devtools::check(pkg_path, document = FALSE, check_dir = ".", quiet = TRUE),
+  expect_error(devtools::check(pkg_path, document = FALSE, check_dir = ".",
+                               quiet = TRUE),
                "Command failed")
 })
 

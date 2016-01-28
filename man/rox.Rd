@@ -55,16 +55,21 @@ no effect.
 Repeatedly turning documentation on an off in the same branch
 clutters the history.  Hence, it is recommended to perform
 development in a dedicated \emph{development} branch and keep the
-documentation only in a \emph{release} branch.  This is achieved
-easily by using \code{git flow} -- documentation can be turned
-off in the \code{develop} branch (and hence all feature branches),
-turned on again as soon as a release is started, and turned off
-after merging a released version back to \code{develop}.
+documentation only in a \emph{release} branch.
+
+One way to achieve this is to use the \code{git flow} command line tool.
+By default, \code{git flow} uses \code{develop} as development and
+\code{master} as release branch; I recommend using \code{master} for
+development and \code{production} for releases, the description below follows
+this convention.  Documentation should be turned
+off in the \code{master} branch (and hence all feature branches derived from
+there), turned on as soon as a release is started, and turned off again
+after merging a released version back to \code{master}.
 Hooks can help automating this process.
-As the history in the \code{master} branch contains
+As the history in the \code{production} branch contains
 only merges from release branches, even repeated turning off and on
 of documentation in development branches doesn't show in the mainline
-history of \code{master}.  Remember to run at least
+history of \code{production}.  Remember to run at least
 \code{git diff --name-status master..} before finishing a release.
 }
 \references{

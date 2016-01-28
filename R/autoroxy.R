@@ -14,14 +14,16 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
-  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", normalizePath(getwd(), winslash = "/"))) {
+  if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", # nolint
+            normalizePath(getwd(), winslash = "/"))) {
     stop("Cannot run this function in R CMD check.")
   }
 
   message("*** autoroxy: creating documentation")
 
   if (!requireNamespace("roxygen2")) {
-    warning("Cannot load roxygen2. Package documentation will be unavailable.", call. = FALSE)
+    warning("Cannot load roxygen2. Package documentation will be unavailable.",
+            call. = FALSE)
     return(invisible(NULL))
   }
 
@@ -50,7 +52,8 @@ autoroxy_path <- function(pkg) {
 
 add_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
-  writeLines(autoroxy_code(), autoroxy_path(pkg))
+  writeLines(c("# nolint start", autoroxy_code(), "# nolint end"),
+             autoroxy_path(pkg))
   git2r::add(repo, "R")
   roxygen2::update_collate(pkg$path)
   git2r::add(repo, "DESCRIPTION")
