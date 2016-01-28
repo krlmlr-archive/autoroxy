@@ -13,5 +13,5 @@ man_dir <- function(repo) {
 }
 
 man_files <- function(repo) {
-  file.path("man", dir(man_dir(repo)))
+  c("NAMESPACE", file.path("man", dir(man_dir(repo))))
 }

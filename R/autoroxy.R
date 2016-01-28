@@ -10,7 +10,7 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
-  if (file.exists("man")) {
+  if (file.exists("man") && file.exists("NAMESPACE")) {
     return(invisible(NULL))
   }
 
@@ -27,7 +27,7 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
-  roxygen2::roxygenize(roclets = c("rd"))
+  roxygen2::roxygenize(roclets = c("rd", "namespace"))
 }
 
 autoroxy_code <- function() {
