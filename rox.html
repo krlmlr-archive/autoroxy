@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-<title>rox. autoroxy 0.0-4</title>
+<title>rox. autoroxy 0.0-5</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="author" content="">
 
@@ -32,7 +32,7 @@
     <div class="navbar">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">autoroxy 0.0-4</a>
+      <a class="brand" href="#">autoroxy 0.0-5</a>
       <div class="nav">
         <ul class="nav">
           <li><a href="index.html"><i class="icon-home icon-white"></i> Index</a></li>
@@ -113,16 +113,21 @@ no effect.</p>
       <p>Repeatedly turning documentation on an off in the same branch
 clutters the history.  Hence, it is recommended to perform
 development in a dedicated <em>development</em> branch and keep the
-documentation only in a <em>release</em> branch.  This is achieved
-easily by using <code>git flow</code> -- documentation can be turned
-off in the <code>develop</code> branch (and hence all feature branches),
-turned on again as soon as a release is started, and turned off
-after merging a released version back to <code>develop</code>.
+documentation only in a <em>release</em> branch.</p>
+  
+      <p>One way to achieve this is to use the <code>git flow</code> command line tool.
+By default, <code>git flow</code> uses <code>develop</code> as development and
+<code>master</code> as release branch; I recommend using <code>master</code> for
+development and <code>production</code> for releases, the description below follows
+this convention.  Documentation should be turned
+off in the <code>master</code> branch (and hence all feature branches derived from
+there), turned on as soon as a release is started, and turned off again
+after merging a released version back to <code>master</code>.
 Hooks can help automating this process.
-As the history in the <code>master</code> branch contains
+As the history in the <code>production</code> branch contains
 only merges from release branches, even repeated turning off and on
 of documentation in development branches doesn't show in the mainline
-history of <code>master</code>.  Remember to run at least
+history of <code>production</code>.  Remember to run at least
 <code>git diff --name-status master..</code> before finishing a release.</p>
   
     </div>
@@ -158,7 +163,7 @@ history of <code>master</code>.  Remember to run at least
       
       <footer>
       <p class="pull-right"><a href="#">Back to top</a></p>
-<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="http://getbootstrap.com">bootstrap</a>.</p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
       </footer>
     </div>
   </body>
