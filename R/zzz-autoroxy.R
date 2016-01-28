@@ -3,7 +3,7 @@
     if (!"DESCRIPTION" %in% dir()) {
         return(invisible(NULL))
     }
-    if (file.exists("man")) {
+    if (file.exists("man") && file.exists("NAMESPACE")) {
         return(invisible(NULL))
     }
     if (grepl("/.*[.]Rcheck/00_pkg_src/.*$", normalizePath(getwd(),
@@ -16,6 +16,6 @@
             call. = FALSE)
         return(invisible(NULL))
     }
-    roxygen2::roxygenize(roclets = c("rd"))
+    roxygen2::roxygenize(roclets = c("rd", "namespace"))
 }
 # nolint end
