@@ -34,9 +34,7 @@ test_that("will create documentation during load_all", {
   expect_false(file.exists(file.path(pkg_path, "man")))
   expect_false(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
 
-  expect_output(
-    expect_warning(expect_commit(rox_on(pkg_path), "rox_on")),
-    "dummy[.]Rd")
+  expect_output(expect_commit(rox_on(pkg_path), "rox_on"), "dummy[.]Rd")
   expect_true(git_clean(repo))
 
   expect_true(file.exists(file.path(pkg_path, "man")))
@@ -54,7 +52,7 @@ test_that("will create documentation during load_all", {
   expect_true(file.exists(file.path(pkg_path, "man")))
   expect_true(file.exists(file.path(pkg_path, "man", "dummy.Rd")))
 
-  expect_warning(expect_commit(rox_on(pkg_path), "rox_on"))
+  expect_commit(rox_on(pkg_path), "rox_on")
   expect_true(git_clean(repo))
 
   expect_true(file.exists(file.path(pkg_path, "man")))

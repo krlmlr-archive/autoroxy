@@ -62,13 +62,12 @@ add_autoroxy <- function(pkg, repo) {
 remove_autoroxy <- function(pkg, repo) {
   pkg <- as.package(pkg)
 
-  file <- file.path(autoroxy_dir(), autoroxy_file())
+  file <- file.path(pkg$path, autoroxy_dir(), autoroxy_file())
   if (!file.exists(file)) {
     warning("File ", file, " doesn't exist.", call. = FALSE)
-    return()
   }
 
-  git2r::rm_file(repo, file)
+  writeLines(character(), file)
   git2r::add(repo, "R")
   roxygen2::update_collate(pkg$path)
   git2r::add(repo, "DESCRIPTION")
