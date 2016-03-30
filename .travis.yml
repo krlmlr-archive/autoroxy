@@ -1,8 +1,6 @@
 # Sample .travis.yml for R projects
 
 language: r
-warnings_are_errors: true
-sudo: required
 
 # This line is necessary, otherwise no documentation will be included for R CMD build, and R CMD check fails
 before_script: R CMD INSTALL .
