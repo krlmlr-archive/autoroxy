@@ -5,4 +5,4 @@ cache: packages
 sudo: false
 
 # This line is necessary, otherwise no documentation will be included for R CMD build, and R CMD check fails
-before_script: R CMD INSTALL .
+before_script: Rscript -e 'devtools::load_all()'
