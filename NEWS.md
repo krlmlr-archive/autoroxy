@@ -1,3 +1,9 @@
+# autoroxy 0.1-2 (2016-03-30)
+
+- Keep empty `zzz-autoroxy.R` file after `rox_on()` to allow detection of an autoroxy-enabled package.
+- Fix tests failing due to changed behavior of `git2r` and `testthat` packages.
+
+
 # autoroxy 0.1-1 (2016-03-30)
 
 - Use `rflow`.

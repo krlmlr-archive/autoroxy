@@ -10,3 +10,9 @@ create_temp_package <- function() {
   git2r::commit(repo, "initial")
   repo
 }
+
+expect_commit <- function(x, msg) {
+  if (expect_true(git2r::is_commit(x))) {
+    expect_match(x@message, msg)
+  }
+}
