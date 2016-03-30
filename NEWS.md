@@ -3,6 +3,7 @@
 - Use `rflow`.
 - Don't try `git2r::rm_file()` if file is missing
 - `rox_on()` now also works if `rox_off()` was never called before.
+- Tests fail for some reason.
 
 
 Version 0.1 (2016-01-28)
