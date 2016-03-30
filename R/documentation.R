@@ -4,7 +4,13 @@ add_documentation <- function(pkg, repo) {
 }
 
 remove_documentation <- function(repo) {
-  git2r::rm_file(repo, man_files(repo))
+  files <- man_files(repo)
+  files <- files[file.exists(file.path(git2r::workdir(repo), files))]
+  if (length(files) == 0L) {
+    warning("No documentation to remove.", call. = FALSE)
+    return()
+  }
+  git2r::rm_file(repo, files)
   unlink(man_dir(repo), recursive = TRUE)
 }
 
