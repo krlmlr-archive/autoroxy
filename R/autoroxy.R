@@ -27,7 +27,14 @@ autoroxy <- function() {
     return(invisible(NULL))
   }
 
-  roxygen2::roxygenize(roclets = c("rd"))
+  if (!requireNamespace("devtools")) {
+    warning("Cannot load devtools. Package documentation will be unavailable.",
+            call. = FALSE)
+    return(invisible(NULL))
+  }
+
+  dir.create("man")
+  devtools::document(roclets = c("rd"))
 }
 
 autoroxy_code <- function() {
