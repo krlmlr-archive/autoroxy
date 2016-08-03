@@ -1,3 +1,8 @@
+## autoroxy 0.1-4 (2016-08-03)
+
+- Use `devtools::document()` instead of `roxygen2::roxygenize()` to create the documentation.
+
+
 # autoroxy 0.1-3 (2016-03-31)
 
 - Enable sudo-less Travis with caching.
